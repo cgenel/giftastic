@@ -8,3 +8,15 @@ body {
 #animals {
   width: 70%;
 }
+/* have more than one column of gifs appear per row */
+.animal-item {
+  float: left;
+  padding: 10px;
+}
+
+/* search form positioning */
+form {
+  float: right;
+  width: 30%;
+  padding: 20px;
+}
