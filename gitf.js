@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     // query the giphy API using my own API key
     var type = $(this).attr("data-type");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=CKcBl8dHqzcH6wRXHzuYB6y5H6hXI2Cm&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=CKcBl8dHqzcH6wRXHzuYB6y5H6hXI2Cm&limit=10";
 
     // ajax api call
     $.ajax({
