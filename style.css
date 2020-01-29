@@ -35,3 +35,28 @@ input[type="text"] {
   margin-bottom: 10px;
   font-size: 18px;
 }
+
+/* styling the buttons  */
+button,
+input[type="submit"] {
+  padding: 5px 20px;
+  margin: 0 10px 10px 0;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  background: #73c291e7;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px #bbb;
+}
+
+/* when you hover over a button */
+button:hover,
+input[type="submit"]:hover {
+  background: #334e4d;
+}
+
+/* button stays highlighted while in use */
+button.active {
+  background: #334e4d;
+}
