@@ -3,28 +3,29 @@ $(document).ready(function() {
   // animals search buttons array that will populate into the index.html
   var animals = [
     "dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla",
-    "hedgehog", "hermit crab", "gerbill", "pygmy goat", "chicken", "capybara", "teacup pif=g", "serval", "salamander", "frog"
+    "hedgehog", "hermit crab", "gerbill", "pygmy goat", "chicken", "capybara", "teacup pig", "serval", "salamander", "frog"
   ];
 
   // function to make buttons from the array 'animals' and add them into the html
-  function populateButtons(searchArray, classToAdd, areaToAddTo) {
+  function populateButtons(arrayToUse, classToAdd, areaToAddTo) {
     $(areaToAddTo).empty();
 
+
     // loop through the array and create a button for each index
-    for(var i = 0; i < searchArray.length; i++){
+    for (var i = 0; i < arrayToUse.length; i++) {
       // modify the search array into buttons
       var a = $("<button>");
       a.addClass(classToAdd);
-      a.attr("data-type", searchArray[i]);
-      a.text(searchArray[i]);
+      a.attr("data-type", arrayToUse[i]);
+      a.text(arrayToUse[i]);
       $(areaToAddTo).append(a);
     }
-  }
 
+  }
   // on click function for when you click on an animal search button
-  $(document).on("click", ".searchButton", function() {
-    $("#searches").empty();
-    $(".searchButton").removeClass("active");
+  $(document).on("click", ".animal-button", function() {
+    $("#animals").empty();
+    $(".animal-button").removeClass("active");
     $(this).addClass("active");
 
     // query the giphy API using my own API key
@@ -44,7 +45,7 @@ $(document).ready(function() {
       for (var i = 0; i < results.length; i++) {
 
         // variable for the div being modified
-        var searchDiv = $("<div class=\"animal-item\">");
+        var animalDiv = $("<div class=\"animal-item\">");
 
         // store the rating of the gifs
         var rating = results[i].rating;
@@ -63,13 +64,47 @@ $(document).ready(function() {
         animalImage.attr("data-state", "still");
         animalImage.addClass("animal-image");
 
-        searchDiv.append(p);
-        searchDiv.append(animalImage);
+        animalDiv.append(p);
+        animalDiv.append(animalImage);
 
         // append to searches div in the html
-        $("#searches").append(searchDiv);
+        $("#animals").append(animalDiv);
       }
     });
-  });
-  populateButtons(animals, "animal-button", "#searches");
+});
+
+// changing the animated state of the gif on/off by clicking
+$(document).on("click", ".animal-image", function() {
+
+  // declaring the state
+  var state = $(this).attr("data-state");
+
+  if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  }
+  else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
+  }
+});
+
+// add animal buttons when you submit a search
+$("#add-animal").on("click", function(event) {
+  event.preventDefault();
+
+  // new animal being created
+  var newAnimal = $("input").eq(0).val();
+
+  // add new search to the array
+  if (newAnimal.length > 2) {
+    animals.push(newAnimal);
+  }
+
+  // populate the buttons from the array into the html
+  populateButtons(animals, "animal-button", "#animal-buttons");
+  return false;
+});
+
+populateButtons(animals, "animal-button", "#animal-buttons");
 });
