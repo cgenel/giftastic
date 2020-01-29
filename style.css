@@ -20,3 +20,18 @@ form {
   width: 30%;
   padding: 20px;
 }
+
+/* "add an aminal" label positioning */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* input section where you search for gif */
+input[type="text"] {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
